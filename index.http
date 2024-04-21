@@ -1,0 +1,26 @@
+ 
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+    "username":"datta1234",
+    "password":"datta1234",
+    "fullName":"dattavenkataramana",
+    "email":"datta1234@gmail.com"
+}
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+    "email":"datta1234@gmail.com",
+    "password":"datta1234"
+}
+
+###
+
+GET http://localhost:5000/data
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhdHRhMTIzNEBnbWFpbC5jb20iLCJpYXQiOjE3MTM1MTcxOTV9.nv_TvPeBsPmBsSzhaJ_ZgIQC-7FEE0Hck1T5WHZ0vv4
+
+###
