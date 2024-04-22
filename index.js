@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://datta:datta1234@cluster0.065gwsz.mongodb.net/data')
+mongoose.connect('mongodb+srv://datta:datta1234@cluster0.065gwsz.mongodb.net/data?retryWrites=true&w=majority')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
@@ -147,6 +147,15 @@ const verifyToken = (req, res, next) => {
 };
 
 app.get('/data', verifyToken, async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+});
+
+app.get('/sumdata', async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
